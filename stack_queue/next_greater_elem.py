@@ -3,8 +3,7 @@ def nextGreaterElement(arr1, arr2):
     stack = []
     n = len(arr2) - 1
     for i in range(n, -1, -1):
-        print(stack)
-
+        print(stack, nge)
         if not stack:
             stack.append(arr2[i])
         else:
@@ -15,6 +14,7 @@ def nextGreaterElement(arr1, arr2):
             else:
                 nge.append(-1)
             stack.append(arr2[i])
+    print(nge[::-1])
     res = []
     for i in arr1:
         ind = arr2.index(i)
@@ -22,4 +22,4 @@ def nextGreaterElement(arr1, arr2):
     return res
 
 
-print(nextGreaterElement([2, 4], [1, 2, 3, 4]))
+print(nextGreaterElement([2, 4], [2, 9, 3, 1, 4, 6]))
