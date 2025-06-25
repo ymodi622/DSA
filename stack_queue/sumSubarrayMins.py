@@ -10,6 +10,7 @@ def sumSubarrayMins(arr):
         else:
             pse.append(-1)
         stack.append(i)
+    print(pse)
     stack = []
     for i in range(len(arr) - 1, -1, -1):
         while stack and arr[i] < arr[stack[-1]]:
@@ -19,14 +20,13 @@ def sumSubarrayMins(arr):
         else:
             nse.insert(0, len(arr))
         stack.append(i)
-    print(pse)
-    print(nse)
+
     total = 0
     for i in range(len(arr)):
         left = i - pse[i]
         right = nse[i] - i
-        total = total + arr[i] * left * right
-    return total % (10**9 + 7)
+        total = total + (arr[i] * left * right)
+    return total
 
 
-print(sumSubarrayMins([3, 2, 1, 4]))
+print(sumSubarrayMins([4, -2, -3, 4, 1]))
