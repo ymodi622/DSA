@@ -37,7 +37,7 @@ class MaxHeap:
             self.heap[i], self.heap[max_index] = self.heap[max_index], self.heap[i]
             self.shiftDown(max_index)
 
-    def delete(self, i):
+    def delete(self, i=0):
         if i >= len(self.heap):
             return
 
@@ -55,10 +55,12 @@ class MaxHeap:
 
 
 h = MaxHeap()
-h.insert(50)
-h.insert(30)
-h.insert(40)
-h.insert(10)
+h.insert(3)
+h.insert(2)
+h.insert(1)
+h.insert(5)
+h.insert(6)
+h.insert(4)
 
 print(h.heap)  # [50, 30, 40, 10]
 h.delete(1)  # deletes 30
