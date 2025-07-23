@@ -10,7 +10,6 @@ def maxDepth(root):
     def goDown(root, cnt, maxCnt):
         cnt += 1
         maxCnt = max(cnt, maxCnt)
-        print(cnt, maxCnt)
         if root.left:
             maxCnt = goDown(root.left, cnt, maxCnt)
         if root.right:
