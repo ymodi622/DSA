@@ -1,26 +1,26 @@
-class Node:
-    def __init__(self, key):
-        self.left = None
-        self.right = None
-        self.val = key
-
-
 def zigzagLevelOrder(root):
-    flag = True
+    if not root:
+        return []
+
     res = []
+    q = [root]
+    left_to_right = True
 
-    def goDown(root):
-        if root is None:
-            return
-        nonlocal flag, res
+    while q:
+        sub = []
+        n = len(q)
+        for _ in range(n):
+            node = q.pop(0)
+            sub.append(node.val)
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
 
-    goDown(root)
+        if not left_to_right:
+            sub.reverse()
 
+        res.append(sub)
+        left_to_right = not left_to_right
 
-root = Node(3)
-root.left = Node(9)
-root.right = Node(20)
-root.right.right = Node(7)
-root.right.left = Node(15)
-
-zigzagLevelOrder(root)
+    return res
