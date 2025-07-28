@@ -1,11 +1,11 @@
-from collections import deque
+from collections import defaultdict, deque
 
 
 class Node:
     def __init__(self, key):
         self.left = None
         self.right = None
-        self.val = key
+        self.data = key
 
 
 def build_tree(nodes):
@@ -34,28 +34,25 @@ def build_tree(nodes):
     return root
 
 
-def findPaths(root):
-    res = []
-    flag = True
+def isSumProperty(root):
+    flag = 1
 
-    def dfs(node, sub):
-        if node.right is None and node.left is None:
-            sub.append(node.val)
-            res.append(sub.copy())
-            return
-        sub.append(node.val)
-        if node.left is not None:
-            dfs(node.left, sub.copy())
-        if node.right is not None:
-            dfs(node.right, sub.copy())
+    def sumLeaf(node):
+        if node is None:
+            return 0
+        if node.left is None and node.right is None:
+            return node.data
+        left = sumLeaf(node.left)
+        right = sumLeaf(node.right)
+        if left + right != node.data:
+            nonlocal flag
+            flag = 0
+        return node.data
 
-    dfs(root, [])
-    return res
+    s = sumLeaf(root)
+    # print(s)
+    return flag
 
 
-root = Node(1)
-root.left = Node(2)
-# root.right = Node(3)
-root.left.left = Node(3)
-# root.left.right = Node(5)
-print(findPaths(root))
+root = build_tree([10, 4, 6, 1, 3, 2, 4])
+print(isSumProperty(root))
