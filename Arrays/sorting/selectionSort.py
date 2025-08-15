@@ -1,10 +1,10 @@
 def selectionSort(arr):
     for i in range(len(arr)):
         minInd = i
-        for j in range(len(arr) - 1, i - 1, -1):
+        for j in range(i + 1, len(arr)):
             if arr[minInd] > arr[j]:
                 minInd = j
-        arr[minInd], arr[j] = arr[j], arr[minInd]
+        arr[minInd], arr[i] = arr[i], arr[minInd]
     return arr
 
 
